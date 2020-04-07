@@ -3,5 +3,14 @@ services:
   - docker
 
 script:
-  - docker build -t joecole/node .
-  - docker images joecole/node
+  - docker build -t spaxxkey/node .
+  - docker images spaxxkey/node
+
+before_deploy:
+  - docker login -u spaxxkey -p 91408916B.c
+
+deploy:
+  provider: script
+  script: docker push spaxxkey/node
+  on:
+    branch: master
